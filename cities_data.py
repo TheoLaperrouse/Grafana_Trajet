@@ -9,10 +9,10 @@ cities = [
         ]
 
 cities_data = {
-                "interest_point": {
-                    "TFTT": [48.1523132,-1.5766265,17],
-                    "Parking Mont Saint Michel": [48.6117652,-1.5066622],
-                    "Energiency": [48.0984544,-1.7015696,17],
+                "interest_points": {
+                    "TFTT": [-1.5766265,48.1523132],
+                    "Parking Mont Saint Michel": [-1.5066622,48.6117652],
+                    "Energiency": [-1.7015696,48.0984544],
                 },
                 "cities":{}
             }

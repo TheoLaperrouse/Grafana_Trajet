@@ -1,18 +1,38 @@
 version: "3"
 services:
     db:
-        container_name: mydb
         image: mysql:5.7
-        ports:
-            - "32001:3306"
+        container_name: db
         environment:
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: my_secret_password
+            MYSQL_DATABASE: app_db
+            MYSQL_USER: db_user
+            MYSQL_PASSWORD: db_user_pass
+        ports:
+        - "6033:3306"
         volumes:
-            - ./data/db:/var/lib/mysql
+        - ./data/db:/var/lib/mysql:/var/lib/mysql
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: pma
+        links:
+        - db
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        restart: always
+        ports:
+        - 8081:80
     osrm:
         container_name: osrm
         links:
             - "db"
+        restart: always
         build: ./
         ports:
             - "5001:5000"
+    grafana:
+        image: grafana/grafana
+        ports:
+        - '80:3000'

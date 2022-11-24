@@ -1,1 +1,3 @@
 pylint
+requests
+mysql-connector-python
