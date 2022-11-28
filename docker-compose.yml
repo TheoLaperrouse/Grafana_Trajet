@@ -11,7 +11,7 @@ services:
         ports:
         - "6033:3306"
         volumes:
-        - ./data/db:/var/lib/mysql:/var/lib/mysql
+        - ./data/db:/var/lib/mysql
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: pma
@@ -24,14 +24,14 @@ services:
         restart: always
         ports:
         - 8081:80
-    osrm:
-        build: ./
-        container_name: osrm
-        links:
-            - "db"
-        restart: always
-        ports:
-            - "5001:5000"
+    # routes-python:
+    #     build: ./
+    #     container_name: routes
+    #     links:
+    #         - "db"
+    #     restart: always
+    #     ports:
+    #         - "5001:5000"
     grafana:
         image: grafana/grafana
         container_name: grafana

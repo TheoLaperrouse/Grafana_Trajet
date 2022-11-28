@@ -23,22 +23,22 @@ def insert_route_infos(db_connex, cities_data):
         for city_key in cities.keys():
 
             lat_city, long_city = cities[city_key]
-            now = int(datetime.now())
-
+            now = datetime.now()
             route_data = requests.get(
-                "https://maps.googleapis.com/maps/api/directions/json?"\
-                    f"origin={long_city}%2C{lat_city}&destination={long}%2C{lat}"\
-                    f"&departure_time={now}"\
-                    f"&key={config['GOOGLE_DIRECTIONS_TOKEN']}",
+                "https://maps.googleapis.com/maps/api/directions/json?"
+                f"origin={long_city}%2C{lat_city}&destination={long}%2C{lat}"
+                f"&departure_time={int(now.timestamp())}"
+                f"&key={config['GOOGLE_DIRECTIONS_TOKEN']}",
                 timeout=10).json()
-            duration = round(route_data['routes'][0]["legs"][0]\
-                ["duration_in_traffic"]['value']/60, 2)
-            distance = round(route_data['routes'][0]["legs"][0]["distance"]['value']/1000, 2)
+            duration = round(route_data['routes'][0]["legs"][0]
+                             ["duration_in_traffic"]['value']/60, 2)
+            distance = round(route_data['routes'][0]
+                             ["legs"][0]["distance"]['value']/1000, 2)
             add_route_query = 'INSERT INTO `app_db`.`routes`' \
-                        '(date, departure, arrival, duration, distance) VALUES (' \
-                        f' "{now}",'\
-                        f'"{city_key}", "{interest_point_key}",'\
-                        f'"{duration}", "{distance}")'
+                '(date, departure, arrival, duration, distance) VALUES (' \
+                f' "{now}",'\
+                f'"{city_key}", "{interest_point_key}",'\
+                f'"{duration}", "{distance}")'
             db_connexion.cursor().execute(add_route_query)
     db_connex.commit()
 

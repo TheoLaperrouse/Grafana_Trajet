@@ -18,13 +18,11 @@ To get ready :
 
 ## Fonctionnement
 
-Utilisation de l'API open source : https://project-osrm.org/docs/v5.24.0/api/#
-
 Pour effectuer des calculs de trajets selon les différentes heures de la journée
 
-Enregistrement des données en BDD sur container en local
+Enregistrement des données en BDD sur container en local (données persistantes dans /data/db)
 
 Construction de l'image Docker : 
 ```sh
-docker build -t orsApp .
+docker build -t routes.py .
 ```
