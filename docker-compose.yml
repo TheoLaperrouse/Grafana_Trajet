@@ -23,7 +23,7 @@ services:
             PMA_ARBITRARY: 1
         restart: always
         ports:
-        - 8081:80
+            - 8081:80
     routes-python:
         build: ./
         container_name: routes
@@ -38,12 +38,15 @@ services:
         links:
             - "db"
         environment:
-            # - GF_DATABASE_HOST=db:3306
-            # - GF_DATABASE_NAME=app_db
-            # - GF_DATABASE_USER=db_user
-            # - GF_DATABASE_PASSWORD=db_user_pass
-            # - GF_DATABASE_TYPE=mysql
-            - GF_PATHS_PROVISIONING=/app-grafana/provisioning
+            GF_DATABASE_HOST: db:3306
+            GF_DATABASE_NAME: app_db
+            GF_DATABASE_USER: db_user
+            GF_DATABASE_PASSWORD: db_user_pass
+            GF_DATABASE_TYPE: mysql
+            GF_SECURITY_ADMIN_USER: admin
+            GF_SECURITY_ADMIN_PASSWORD: admin
+            GF_PATHS_PROVISIONING: /app-grafana/provisioning
+            GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /app-grafana/home/home.json
         restart: always
         ports:
             - '80:3000'

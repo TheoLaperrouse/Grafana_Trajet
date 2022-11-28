@@ -2,7 +2,8 @@ import json
 import requests
 
 cities = [
-          "Thorigné-Fouillard", "Combourg",
+          "Thorigné-Fouillard",
+          "Combourg",
           "Saint Aubin d'Aubigné", "Liffré", "Saint Aubin du Cormier",
           "Feins", "Bonnemain","Val Couesnon",
           "Pontorson", "La Mézière"

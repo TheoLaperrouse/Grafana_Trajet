@@ -30,10 +30,8 @@ def insert_route_infos(db_connex, cities_data):
                 f"&departure_time={int(now.timestamp())}"
                 f"&key={config['GOOGLE_DIRECTIONS_TOKEN']}",
                 timeout=10).json()
-            duration = round(route_data['routes'][0]["legs"][0]
-                             ["duration_in_traffic"]['value']/60, 2)
-            distance = round(route_data['routes'][0]
-                             ["legs"][0]["distance"]['value']/1000, 2)
+            duration = route_data['routes'][0]["legs"][0]["duration_in_traffic"]['value']
+            distance = route_data['routes'][0]["legs"][0]["distance"]['value']
             add_route_query = 'INSERT INTO `app_db`.`routes`' \
                 '(date, departure, arrival, duration, distance) VALUES (' \
                 f' "{now}",'\
