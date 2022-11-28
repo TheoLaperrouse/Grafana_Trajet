@@ -1,1 +1,0 @@
-SELECT $__time(date), duration FROM app_db.routes WHERE departure="Thorigné-Fouillard" AND arrival="Energiency"

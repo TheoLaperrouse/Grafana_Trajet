@@ -33,16 +33,17 @@ services:
         ports:
             - "5001:5000"
     grafana:
-        image: grafana/grafana
+        build: grafana
         container_name: grafana
         links:
             - "db"
         environment:
-            - GF_DATABASE_HOST=db:3306
-            - GF_DATABASE_NAME=app_db
-            - GF_DATABASE_USER=db_user
-            - GF_DATABASE_PASSWORD=db_user_pass
-            - GF_DATABASE_TYPE=mysql
+            # - GF_DATABASE_HOST=db:3306
+            # - GF_DATABASE_NAME=app_db
+            # - GF_DATABASE_USER=db_user
+            # - GF_DATABASE_PASSWORD=db_user_pass
+            # - GF_DATABASE_TYPE=mysql
+            - GF_PATHS_PROVISIONING=/app-grafana/provisioning
         restart: always
         ports:
             - '80:3000'
