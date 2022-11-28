@@ -11,29 +11,35 @@ ROUTE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS `app_db`.`routes` ("\
                     "`date` VARCHAR(40) NOT NULL ,"\
                     "`departure` VARCHAR(40) NOT NULL ,"\
                     "`arrival` VARCHAR(40) NOT NULL ,"\
-                    "`duration` DECIMAL(5) NOT NULL ) ENGINE = InnoDB;"
+                    "`duration` DECIMAL(5,2) NOT NULL,"\
+                    "`distance` DECIMAL(5,2) NOT NULL) ENGINE = InnoDB;"
 
 
 def insert_route_infos(db_connex, cities_data):
-    cursor = db_connexion.cursor()
-    interest_points = cities_data['interest_points']
     cities = cities_data['cities']
     config = dotenv_values('.env')
-    for interest_point_key in interest_points.keys():
-        lat, long = interest_points[interest_point_key]
+    for interest_point_key in cities_data['interest_points'].keys():
+        lat, long = cities_data['interest_points'][interest_point_key]
         for city_key in cities.keys():
+
             lat_city, long_city = cities[city_key]
+            now = int(datetime.now())
+
             route_data = requests.get(
-                'https://api.openrouteservice.org/v2/directions/driving-car?'\
-                f'api_key={config["ORS_TOKEN"]}'\
-                f'&start={lat_city},{long_city}&end={lat},{long}',
+                "https://maps.googleapis.com/maps/api/directions/json?"\
+                    f"origin={long_city}%2C{lat_city}&destination={long}%2C{lat}"\
+                    f"&departure_time={now}"\
+                    f"&key={config['GOOGLE_DIRECTIONS_TOKEN']}",
                 timeout=10).json()
-            duration = round(route_data['features'][0]["properties"]["summary"]['duration']/60, 2)
+            duration = round(route_data['routes'][0]["legs"][0]\
+                ["duration_in_traffic"]['value']/60, 2)
+            distance = round(route_data['routes'][0]["legs"][0]["distance"]['value']/1000, 2)
             add_route_query = 'INSERT INTO `app_db`.`routes`' \
-                        '(date, departure, arrival, duration) VALUES (' \
-                        f' "{datetime.now().isoformat()}",'\
-                        f'"{city_key}", "{interest_point_key}", "{duration}")'
-            cursor.execute(add_route_query)
+                        '(date, departure, arrival, duration, distance) VALUES (' \
+                        f' "{now}",'\
+                        f'"{city_key}", "{interest_point_key}",'\
+                        f'"{duration}", "{distance}")'
+            db_connexion.cursor().execute(add_route_query)
     db_connex.commit()
 
 
@@ -50,4 +56,4 @@ if __name__ == "__main__":
         cities_json = json.load(f)
     while True:
         insert_route_infos(db_connexion, cities_json)
-        time.sleep(1800)
+        time.sleep(900)

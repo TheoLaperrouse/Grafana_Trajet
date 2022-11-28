@@ -5,7 +5,7 @@ cities = [
           "Thorigné-Fouillard", "Combourg",
           "Saint Aubin d'Aubigné", "Liffré", "Saint Aubin du Cormier",
           "Feins", "Bonnemain","Val Couesnon",
-          "Pontorson"
+          "Pontorson", "La Mézière"
         ]
 
 cities_data = {

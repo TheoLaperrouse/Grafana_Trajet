@@ -1,0 +1,54 @@
+{
+    "cities": {
+        "Bonnemain": [
+            -1.7672,
+            48.4669
+        ],
+        "Combourg": [
+            -1.7524,
+            48.41
+        ],
+        "Feins": [
+            -1.6403,
+            48.3282
+        ],
+        "Liffré": [
+            -1.5054,
+            48.214
+        ],
+        "Pontorson": [
+            -1.5098,
+            48.5538
+        ],
+        "Saint-Aubin-d'Aubigné": [
+            -1.6058,
+            48.2628
+        ],
+        "Saint-Aubin-du-Cormier": [
+            -1.3991,
+            48.2601
+        ],
+        "Thorigné-Fouillard": [
+            -1.5817,
+            48.1532
+        ],
+        "Val-Couesnon": [
+            -1.4853,
+            48.4614
+        ]
+    },
+    "interest_points": {
+        "Energiency": [
+            48.0984544,
+            -1.7015696
+        ],
+        "Parking Mont Saint Michel": [
+            48.6117652,
+            -1.5066622
+        ],
+        "TFTT": [
+            48.1523132,
+            -1.5766265
+        ]
+    }
+}

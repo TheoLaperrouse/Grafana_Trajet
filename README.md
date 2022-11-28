@@ -13,7 +13,7 @@ pylint **/*.py
 ```
 
 To get ready :
-- Get a token for the API of ORS : https://openrouteservice.org/dev/#/api-docs/v2/directions/{profile}/get
+- Get a token for the API of GoogleMaps
 - Add it to the associated env variable in .env
 
 ## Fonctionnement
