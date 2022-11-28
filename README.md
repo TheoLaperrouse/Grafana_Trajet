@@ -24,5 +24,10 @@ Enregistrement des données en BDD sur container en local (données persistantes
 
 Construction de l'image Docker : 
 ```sh
-docker build -t routes.py .
+docker-compose up --build
+```
+
+If you have some problems with rights on data folder :
+```
+sudo chown -R $USER data/db/app_db
 ```

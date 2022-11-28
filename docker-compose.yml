@@ -24,14 +24,14 @@ services:
         restart: always
         ports:
         - 8081:80
-    # routes-python:
-    #     build: ./
-    #     container_name: routes
-    #     links:
-    #         - "db"
-    #     restart: always
-    #     ports:
-    #         - "5001:5000"
+    routes-python:
+        build: ./
+        container_name: routes
+        links:
+            - "db"
+        restart: always
+        ports:
+            - "5001:5000"
     grafana:
         image: grafana/grafana
         container_name: grafana
