@@ -11,8 +11,8 @@ ROUTE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS `app_db`.`routes` ("\
                     "`date` VARCHAR(40) NOT NULL ,"\
                     "`departure` VARCHAR(40) NOT NULL ,"\
                     "`arrival` VARCHAR(40) NOT NULL ,"\
-                    "`duration` DECIMAL(5,2) NOT NULL,"\
-                    "`distance` DECIMAL(5,2) NOT NULL) ENGINE = InnoDB;"
+                    "`duration` INT NOT NULL,"\
+                    "`distance` INT NOT NULL) ENGINE = InnoDB;"
 
 
 def insert_route_infos(db_connex, cities_data):
@@ -34,7 +34,7 @@ def insert_route_infos(db_connex, cities_data):
             distance = route_data['routes'][0]["legs"][0]["distance"]['value']
             add_route_query = 'INSERT INTO `app_db`.`routes`' \
                 '(date, departure, arrival, duration, distance) VALUES (' \
-                f' "{now}",'\
+                f'"{now}",'\
                 f'"{city_key}", "{interest_point_key}",'\
                 f'"{duration}", "{distance}")'
             db_connexion.cursor().execute(add_route_query)

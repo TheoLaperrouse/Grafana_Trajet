@@ -66,8 +66,102 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 8,
         "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 200
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "PA50254F20F695550"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT AVG(duration) as value FROM app_db.routes WHERE departure=${departure:doublequote} AND arrival=${arrival:doublequote}",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Temps Moyen",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "PA50254F20F695550"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "value"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 8,
         "y": 0
       },
       "id": 4,
@@ -160,8 +254,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
+        "w": 9,
+        "x": 15,
         "y": 0
       },
       "id": 5,
@@ -301,7 +395,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT $__time(date), duration FROM app_db.routes WHERE departure=${departure:doublequote} AND arrival=${arrival:doublequote}",
+          "rawSql": "SELECT $__time(date), duration / 60 FROM app_db.routes WHERE departure=${departure:doublequote} AND arrival=${arrival:doublequote}",
           "refId": "A",
           "sql": {
             "columns": [
@@ -333,11 +427,11 @@
   "templating": {
     "list": [
       {
-          "current": {
-              "selected": true,
-              "text": "Thorigné-Fouillard",
-              "value": "Thorigné-Fouillard"
-          },
+        "current": {
+          "selected": true,
+          "text": "Thorigné-Fouillard",
+          "value": "Thorigné-Fouillard"
+        },
         "datasource": {
           "type": "mysql",
           "uid": "PA50254F20F695550"
@@ -358,7 +452,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "TFTT",
           "value": "TFTT"
         },
@@ -390,6 +484,6 @@
   "timezone": "",
   "title": "Trajets",
   "uid": "MlZlrzF4k",
-  "version": 7,
+  "version": 3,
   "weekStart": ""
 }
