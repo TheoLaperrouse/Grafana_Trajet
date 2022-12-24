@@ -5,7 +5,8 @@ datasources:
     type: mysql
     url: db:3306
     user: db_user
-    password: db_user_pass
+    secureJsonData:
+      password: db_user_pass 
     database: app_db
     version: 1
     editable: true

@@ -428,7 +428,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "Thorigné-Fouillard",
           "value": "Thorigné-Fouillard"
         },
@@ -444,7 +444,7 @@
         "name": "departure",
         "options": [],
         "query": "SELECT DISTINCT departure FROM routes",
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
@@ -484,6 +484,6 @@
   "timezone": "",
   "title": "Trajets",
   "uid": "MlZlrzF4k",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }
